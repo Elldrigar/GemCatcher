@@ -16,3 +16,7 @@ func _process(delta: float) -> void:
 		#position.x = position.x + speed * delta
 	var input_amount: float = Input.get_axis("left", "right")
 	position.x += delta * speed * input_amount
+
+
+func _on_gem_area_entered(area: Area2D) -> void:
+	print(area) # Replace with function body.
