@@ -3,6 +3,7 @@ extends Node2D
 @export var gem_scene: PackedScene
 @onready var label: Label = $Label
 @onready var timer: Timer = $Timer
+@onready var audio_stream_player_2d: AudioStreamPlayer2D = $AudioStreamPlayer2D
 
 var _score: int = 0
 
@@ -33,4 +34,6 @@ func _on_timer_timeout() -> void:
 func _on_paddle_area_entered(area: Area2D) -> void:
 	_score += 1
 	label.text = "%04d" % _score
+	audio_stream_player_2d.position = area.position
+	audio_stream_player_2d.play()
 	area.queue_free()
