@@ -1,5 +1,7 @@
 extends Node2D
 
+const EXPLODE = preload("res://assets/explode.wav")
+
 @export var gem_scene: PackedScene
 @onready var label: Label = $Label
 @onready var timer: Timer = $Timer
@@ -25,8 +27,14 @@ func stop_all() -> void:
 	for child in get_children():
 		child.set_process(false)
 
+func play_dead() -> void:
+	audio_stream_player_2d.stop()
+	audio_stream_player_2d.stream = EXPLODE
+	audio_stream_player_2d.play()
+
 func game_over() -> void:
 	stop_all()
+	play_dead()
 
 func _on_timer_timeout() -> void:
 	spawn_gem()
